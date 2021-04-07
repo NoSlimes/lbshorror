@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Door : MonoBehaviour
 {
     [SerializeField]public bool isLocked;
+    public Animator anim;
 
     private void Update()
     {
@@ -24,8 +25,9 @@ public class Door : MonoBehaviour
     {
         if (!isLocked)
         {
-            Animator anim = GetComponentInParent<Animator>(); //Set the animator to the animator of the Door currently looked at
+            anim = GetComponentInParent<Animator>(); //Set the animator to the animator of the Door currently looked at
                 anim.SetTrigger("OpenClose");
+            Debug.Log(this.anim);
         }
         else
         {
