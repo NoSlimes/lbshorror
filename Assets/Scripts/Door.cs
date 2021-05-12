@@ -6,11 +6,16 @@ using UnityEngine.AI;
 
 public class Door : MonoBehaviour
 {
+<<<<<<< HEAD
     public bool isLocked;
     [HideInInspector]public Animator anim;
     [SerializeField] bool useKey1;
     [SerializeField] bool useKey2;
     [SerializeField] bool useKey3;
+=======
+    [SerializeField]public bool isLocked;
+    public Animator anim;
+>>>>>>> 6bd7cfb8150d83e7b62cbabb6d7bdb1872ea66d7
 
     private void Update()
     {
@@ -28,6 +33,7 @@ public class Door : MonoBehaviour
     {
         if (!isLocked)
         {
+<<<<<<< HEAD
             OpenCloseDoor();
         }
         else if (useKey1 && InteractableController.hasKey1)
@@ -41,6 +47,11 @@ public class Door : MonoBehaviour
         else if (useKey3 && InteractableController.hasKey3)
         {
             OpenCloseDoor();
+=======
+            anim = GetComponentInParent<Animator>(); //Set the animator to the animator of the Door currently looked at
+                anim.SetTrigger("OpenClose");
+            Debug.Log(this.anim);
+>>>>>>> 6bd7cfb8150d83e7b62cbabb6d7bdb1872ea66d7
         }
         else
         {

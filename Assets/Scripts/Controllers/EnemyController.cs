@@ -34,7 +34,11 @@ public class EnemyController : MonoBehaviour
                 return;
 
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("DoorClose") | anim.GetCurrentAnimatorStateInfo(0).IsName("Start")) //Checks the state of the animator, opens the door if the door is already closed
+<<<<<<< HEAD
                 door.LockedCheck(); Debug.Log("OPEN");
+=======
+                door.openCloseDoor(); Debug.Log("OPEN");
+>>>>>>> 6bd7cfb8150d83e7b62cbabb6d7bdb1872ea66d7
         }
     }
 
@@ -47,8 +51,19 @@ public class EnemyController : MonoBehaviour
             return;
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("DoorOpen")) //Checks the state of the animator, closes the door if the door is already open
+<<<<<<< HEAD
             door.LockedCheck(); Debug.Log("CLOSE");
     }
+=======
+            door.openCloseDoor(); Debug.Log("CLOSE");
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag == "Enemy")
+            Destroy(this.gameObject);
+    }
+>>>>>>> 6bd7cfb8150d83e7b62cbabb6d7bdb1872ea66d7
     #endregion
 
     // Update is called once per frame
