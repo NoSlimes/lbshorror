@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9081489371791555422}
   - component: {fileID: 5596518707560605077}
   - component: {fileID: -5855017983885778303}
+  - component: {fileID: 5634801186434229268}
   m_Layer: 0
   m_Name: kitchen_chair
   m_TagString: Untagged
@@ -95,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2069373, y: 2.8902159, z: 1.2063485}
-  m_Center: {x: 0.00000023841858, y: 0.25362694, z: 0}
+  m_Size: {x: 1.2069373, y: 1.1965508, z: 1.2063485}
+  m_Center: {x: 0.00000023841858, y: -0.5932057, z: 0}
 --- !u!208 &-5855017983885778303
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -113,3 +114,16 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.254, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &5634801186434229268
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279807148030253707}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08472991, y: 1.6913853, z: 1.2063485}
+  m_Center: {x: -0.56110346, y: 0.8530421, z: 0}
