@@ -37,6 +37,12 @@ public class InteractableController : MonoBehaviour
                     Key key = hit.transform.GetComponent<Key>();
                     key.PickUpKey();
                 }
+
+                if (hit.transform.CompareTag("Lamp"))
+                {
+                    Lamp lamp = hit.transform.GetComponent<Lamp>();
+                    lamp.LightOnOff();
+                }
             }
             Cursor.SetActive(true);
         }
