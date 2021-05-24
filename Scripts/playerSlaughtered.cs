@@ -7,6 +7,7 @@ public class playerSlaughtered : MonoBehaviour
     public Camera deathCam;
     public Animator anim;
     public Light deathFlahslight;
+    public GameObject playerBody;
     Camera cam;
     GameObject[] playerRespawnPoints;
     GameObject currentPoint;
@@ -22,7 +23,7 @@ public class playerSlaughtered : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tilde))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             Debug.Log(PlayerController.currentPlayerHealth);
             deathCam.enabled = false;
@@ -37,9 +38,9 @@ public class playerSlaughtered : MonoBehaviour
 
     IEnumerator animationer()
     {
-        KO();     
+        KO();
         yield return new WaitForSeconds(2);
-        deathFlahslight.intensity = Mathf.Lerp(deathFlahslight.intensity, 0f, Time.deltaTime * 2);
+        deathFlahslight.intensity = Mathf.Lerp(deathFlahslight.intensity, 0, Time.deltaTime * 2);
         yield return new WaitForSeconds(2);
         if (PlayerController.currentPlayerHealth > 0)
         {
@@ -47,27 +48,30 @@ public class playerSlaughtered : MonoBehaviour
             yield return new WaitForSeconds(.2f);
 
             anim.SetTrigger("wake");
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2);
             wake();
         }
-        else
+        /*else
         {
             
-        }
+        }*/
     }
 
     void KO()
     {
-        if (PlayerController.torchOn)
-            deathFlahslight.enabled = true;
+        playerBody.SetActive(false);
         cam.enabled = false;
         deathCam.enabled = true;
         anim.SetTrigger("dead");
+        if (PlayerController.torchOn)
+            deathFlahslight.enabled = true; PlayerController.torchOn = false;
     }
-    
+
     void wake()
     {
+        playerBody.SetActive(true);
         deathCam.enabled = false;
+        deathFlahslight.enabled = false;
         cam.enabled = true;
         attacked = false;
     }
