@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MeshFormatVersion: 1
+  m_MeshFormatVersion: 2
   m_Faces:
   - m_Indexes: 5b0000005c0000005d000000
     m_SmoothingGroup: 1
@@ -2583,8 +2583,10 @@ MonoBehaviour:
     m_PackMargin: 20
     m_AngleError: 8
     m_AreaError: 15
-  m_PreserveMeshAssetOnDestroy: 0
+  m_PreserveMeshAssetOnDestroy: 1
   assetGuid: 
+  m_Mesh: {fileID: 0}
+  m_VersionIndex: 25
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

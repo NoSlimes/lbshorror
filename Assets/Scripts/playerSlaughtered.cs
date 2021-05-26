@@ -7,6 +7,7 @@ public class playerSlaughtered : MonoBehaviour
     public Camera deathCam;
     public Animator anim;
     public Light deathFlahslight;
+    public GameObject playerBody;
     Camera cam;
     GameObject[] playerRespawnPoints;
     GameObject currentPoint;
@@ -39,7 +40,7 @@ public class playerSlaughtered : MonoBehaviour
     {
         KO();
         yield return new WaitForSeconds(2);
-        deathFlahslight.intensity = Mathf.Lerp(deathFlahslight.intensity, 0, Time.deltaTime * 5);
+        deathFlahslight.intensity = Mathf.Lerp(deathFlahslight.intensity, 0, Time.deltaTime * 2);
         yield return new WaitForSeconds(2);
         if (PlayerController.currentPlayerHealth > 0)
         {
@@ -58,6 +59,7 @@ public class playerSlaughtered : MonoBehaviour
 
     void KO()
     {
+        playerBody.SetActive(false);
         cam.enabled = false;
         deathCam.enabled = true;
         anim.SetTrigger("dead");
@@ -67,7 +69,9 @@ public class playerSlaughtered : MonoBehaviour
 
     void wake()
     {
+        playerBody.SetActive(true);
         deathCam.enabled = false;
+        deathFlahslight.enabled = false;
         cam.enabled = true;
         attacked = false;
     }

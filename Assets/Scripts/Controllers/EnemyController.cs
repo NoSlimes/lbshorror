@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
 
     bool stuck = false;
+    public bool stunned = false;
     void Start()
     {
         target = PlayerManager.instance.player.transform;
@@ -115,7 +116,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if(stuck)
+        if(stuck && !stunned)
         {
             RandomRoam();
             if(isPlayerDetected)

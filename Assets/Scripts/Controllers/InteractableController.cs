@@ -43,6 +43,12 @@ public class InteractableController : MonoBehaviour
                     Lamp lamp = hit.transform.GetComponent<Lamp>();
                     lamp.LightOnOff();
                 }
+
+                if (hit.transform.CompareTag("LightSwitch"))
+                {
+                    lightSwitch lightSwitch = hit.transform.GetComponentInParent<lightSwitch>();
+                    lightSwitch.onOff();
+                }
             }
             Cursor.SetActive(true);
         }

@@ -9,7 +9,7 @@ public class Battery : MonoBehaviour
         PlayerController.currentBatteries += 1;         //Adds 1 to the current amount of batteries the player has got
         Debug.Log(PlayerController.currentBatteries);
         FindObjectOfType<AudioManager>().Play("pickUpItem");
-        Destroy(this.gameObject);         //Destroys the battery gameObject
+        Destroy(gameObject);         //Disables the battery gameObject
     }
 
 }
