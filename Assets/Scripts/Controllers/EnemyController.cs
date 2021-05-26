@@ -1,26 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-
 
 public class EnemyController : MonoBehaviour
 {
-    private float TimeOutTime = .1f;
-    public float lookDistance = 50f;
+    //private float _timeOutTime = .1f;
+    public float lookDistance = 1f;
     public float wanderRadius = 100f;
     public static bool isPlayerDetected;
+    [SerializeField] GameObject rayOrigin;
 
     public LayerMask ignore;
-    Transform target;
-    NavMeshAgent agent;
+    private Transform _target;
 
-    bool stuck = false;
+
+    //bool _stuck = false;
     public bool stunned = false;
+    private EnemyEngine _engine;
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
-        agent = GetComponent<NavMeshAgent>();
+        _target = GameObject.Find("/Player/Body").transform;
+        _engine = GetComponent<EnemyEngine>();
+
     }
 
     #region Triggers
@@ -35,7 +34,7 @@ public class EnemyController : MonoBehaviour
                 return;
 
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("DoorClose") | anim.GetCurrentAnimatorStateInfo(0).IsName("Start")) //Checks the state of the animator, opens the door if the door is already closed
-                door.LockedCheck(); Debug.Log("OPEN");
+                door.LockedCheck(); 
         }
     }
 
@@ -48,88 +47,51 @@ public class EnemyController : MonoBehaviour
             return;
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("DoorOpen")) //Checks the state of the animator, closes the door if the door is already open
-            door.LockedCheck(); Debug.Log("CLOSE");
+            door.LockedCheck();
     }
     #endregion
-
-    // Update is called once per frame
-    void Update()
-    {
-        DontDestroyOnLoad(gameObject);
-
-        float velocity = agent.velocity.magnitude;
-        Vector3 origin = transform.position + Vector3.up * 3;
-        Vector3 targetPos = target.position + Vector3.up * 0.5f;
-        Vector3 dir = (targetPos - origin);
-        float distance = Vector3.Distance(target.position, transform.position);
-
-
-        //Draws a raycast towards the player
-        if (Physics.Raycast(origin, dir, out RaycastHit hit, lookDistance, ~ignore))
-        {
-
-            //If the raycast hits a gameObject with the tag "Player"
-            if (hit.transform.CompareTag("Player") && distance < lookDistance)
-            {
-
-                agent.SetDestination(hit.transform.position);
-                //If the enemy is closer to the player than the set stopping distance, stop and turn towards the player
-                if (distance <= agent.stoppingDistance)
-                {
-                    AttackPlayer();
-                }
-
-
-                isPlayerDetected = true;
-                Debug.DrawRay(origin, dir * lookDistance, Color.blue);
-            }
-        }
-        else
-        {
-            isPlayerDetected = false;
-            Debug.DrawRay(origin, dir * lookDistance, Color.red);
-        }
-
-
-        Mathf.Clamp(TimeOutTime, 0, TimeOutTime);
-        if (velocity < 0.1 && TimeOutTime > 0 && distance > 1)
-            TimeOutTime -= Time.deltaTime;
-        else TimeOutTime = .1f;
-
-        if(TimeOutTime <= 0f)
-            stuck = true;
-
-
-        
-    }
-
-     
-
+    
     private void FixedUpdate()
     {
+        
+        Vector3 origin = rayOrigin.transform.position;
+        Vector3 targetPos = _target.position;
+        Vector3 dir = (targetPos - origin);
+        float distance = Vector3.Distance(targetPos, transform.position);
+        int layerMask = 1 << 31;
+        layerMask = ~layerMask;
+        
+        //Draws a raycast towards the player
+        if (Physics.Raycast(origin, dir, out RaycastHit hit, lookDistance, layerMask))
+        {
+            if (hit.transform.CompareTag("Player"))
+            {
+                _engine.agent.SetDestination(hit.transform.position);
+                if (distance <= _engine.agent.stoppingDistance)
+                    AttackPlayer(); isPlayerDetected = true; Debug.Log("HIT THE GODDAMN PLAYER :D");
+            }
+            else isPlayerDetected = false;
+
+        }
+
+        Debug.DrawRay(origin, dir * hit.distance, Color.red);
+        
+        
         //Sets the enemy to roam around randomly when player is not hit by the raycast
         if(!isPlayerDetected)
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (_engine.agent.remainingDistance <= _engine.agent.stoppingDistance)
             {
                 RandomRoam();
             }
         }
 
-        if(stuck && !stunned)
-        {
-            RandomRoam();
-            if(isPlayerDetected)
-                isPlayerDetected = false;
-            Debug.Log("stuck, setting new destination");
-            stuck = false;
-            TimeOutTime = .1f;
-        }
+        
     }
 
     void RandomRoam()
     {
-        agent.SetDestination(agent.RandomPosition(wanderRadius));
+        _engine.agent.SetDestination(_engine.agent.RandomPosition(wanderRadius));
     }
 
     void AttackPlayer()

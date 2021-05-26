@@ -54,7 +54,6 @@ public class Door : MonoBehaviour
     {
         anim = GetComponentInParent<Animator>(); //Set the animator to the animator of the Door currently looked at
         anim.SetTrigger("OpenClose");
-        Debug.Log(this.anim);
     }
 
 

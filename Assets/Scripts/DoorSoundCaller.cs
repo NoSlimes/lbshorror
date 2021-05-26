@@ -48,7 +48,6 @@ public class DoorSoundCaller : MonoBehaviour
     public void DoorCloseSFX()
     {
         Play("DoorClose");
-        Debug.Log("hej");
     }
 
     public void DoorSlamSFX()
