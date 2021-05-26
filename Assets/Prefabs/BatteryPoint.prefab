@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7873797064282033334}
   - component: {fileID: 4573139634844257206}
   - component: {fileID: 8386183595453000010}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3276577874963828739}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: BatteryPoint
   m_TagString: batterypoint
   m_Icon: {fileID: 0}
