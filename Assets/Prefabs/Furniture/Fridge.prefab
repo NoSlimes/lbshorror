@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3576283408138941774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8780438096818175305}
   - component: {fileID: 7354710556318892886}
   - component: {fileID: 8591675592075033319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube33
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -76,7 +76,6 @@ public class EnemyController : MonoBehaviour
 
         Debug.DrawRay(origin, dir * hit.distance, Color.red);
         
-        
         //Sets the enemy to roam around randomly when player is not hit by the raycast
         if(!isPlayerDetected)
         {
@@ -85,8 +84,6 @@ public class EnemyController : MonoBehaviour
                 RandomRoam();
             }
         }
-
-        
     }
 
     void RandomRoam()

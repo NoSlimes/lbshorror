@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3837aae1feacfbf43a7648c873500e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 7716260072805893615}
 --- !u!54 &7716260072805893613
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -669,8 +669,7 @@ MonoBehaviour:
   rayOrigin: {fileID: 6577411635266348802}
   ignore:
     serializedVersion: 2
-    m_Bits: 0
-  target: {fileID: 797350396856869866, guid: 33a2bb7911a4fb34d958489c9cd88c08, type: 3}
+    m_Bits: 516
   stunned: 0
 --- !u!1 &7831124075845420585
 GameObject:
